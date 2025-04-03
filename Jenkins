@@ -33,6 +33,17 @@ pipeline {
                 }
             }
         }
+        stage('Remove Existing Container (If Running)') {
+            steps {
+                script {
+                    def containerExists = sh(script: "docker ps -a --format '{{.Names}}' | grep -w ${CONTAINER_NAME} || true", returnStdout: true).trim()
+                    if (containerExists) {
+                        sh "docker stop ${CONTAINER_NAME} || true"
+                        sh "docker rm ${CONTAINER_NAME} || true"
+                    }
+                }
+            }
+        }
 
         stage('Deploy Container') {
             steps {
