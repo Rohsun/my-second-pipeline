@@ -36,7 +36,7 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name flask-app $DOCKER_IMAGE'
+                sh 'docker run -d -p 9090:8080 --name flask-app $DOCKER_IMAGE'
             }
         }
     }
