@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = "https://github.com/rohsun/my-second-pipeline.git"
+        DOCKER_IMAGE = "rohsun/my-flask-app"
+        DOCKER_CREDENTIALS_ID = "docker-hub-credentials"  // Store DockerHub credentials in Jenkins
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: "$REPO_URL"
+            }
+        }
+
+        stage('Build Application') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $DOCKER_IMAGE .'
+            }
+        }
+
+        stage('Push Docker Image to DockerHub') {
+            steps {
+                withDockerRegistry([credentialsId: "$DOCKER_CREDENTIALS_ID", url: ""]) {
+                    sh 'docker push $DOCKER_IMAGE'
+                }
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh 'docker run -d -p 8080:8080 --name flask-app $DOCKER_IMAGE'
+            }
+        }
+    }
+}
+
