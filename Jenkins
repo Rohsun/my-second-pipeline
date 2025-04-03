@@ -4,7 +4,7 @@ pipeline {
     environment {
         REPO_URL = "https://github.com/rohsun/my-second-pipeline.git"
         DOCKER_IMAGE = "rohsun/my-flask-app"
-        DOCKER_CREDENTIALS_ID = "docker-hub-credentials"  // Store DockerHub credentials in Jenkins
+        DOCKER_CREDENTIALS_ID = "docker-credentials"  // Store DockerHub credentials in Jenkins
     }
 
     stages {
