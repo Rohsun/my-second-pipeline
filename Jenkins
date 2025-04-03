@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Rohsun/my-second-pipeline'
+                git branch: 'main', credentialsId: 'git-credentials', url: 'https://github.com/Rohsun/my-second-pipeline.git'
             }
         }
 
