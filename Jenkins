@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "rohsun/my-flask-app"
         CONTAINER_NAME = "flask-app"
-        HOST_PORT = "8080"
+        HOST_PORT = "7070"
         CONTAINER_PORT = "8080"
     }
 
