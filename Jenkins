@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "rohsun/my-flask-app"
-        CONTAINER_NAME = "flask-app"
-        HOST_PORT = "7070"
-        CONTAINER_PORT = "8080"
+    IMAGE_NAME = "rohsun/my-flask-app"
+    CONTAINER_NAME = "flask-app"
+    HOST_PORT = "7070"  // Change this to 7070 (or another free port)
+    CONTAINER_PORT = "8080"
     }
 
     stages {
